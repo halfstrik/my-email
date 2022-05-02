@@ -6,7 +6,7 @@ Use [cd71.iso](https://cdn.openbsd.org/pub/OpenBSD/7.1/amd64/cd71.iso)
 
 Keyboard layout: default
 
-Hostname: mail-openbsd-71
+Hostname: mail-openbsd-71.<mydomain> (also set up an A-record in DNS)
 
 No X Windows apps, default net config.
 
