@@ -62,3 +62,15 @@ doas rcctl start rspamd
 
 ## Configure OpenSMTPd
 See `/etc/mail/smtpd.conf` and `/etc/mail/aliases`
+
+## Configuring Dovecot
+```
+doas pkg_add dovecot
+```
+Update descriptors on `/etc/login.conf` (OR check that `/etc/login.conf.d/dovecot` is created)
+Update certs in `/etc/dovecot/conf.d/10-ssl.conf`
+Update `mail_location` in `/etc/dovecot/conf.d/10-mail.conf` (TODO: make it work with LMTP)
+```
+doas rcctl enable dovecot
+doas rcctl start dovecot
+```
