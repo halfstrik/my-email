@@ -61,3 +61,4 @@ doas rcctl start rspamd
 ```
 
 ## Configure OpenSMTPd
+See `/etc/mail/smtpd.conf` and `/etc/mail/aliases`
