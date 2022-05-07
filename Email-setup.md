@@ -5,10 +5,10 @@ Links:
 ## Set up DKIM
 ```
 doas mkdir /etc/mail/dkim
-doas openssl genrsa -out /etc/mail/dkim/<domain>.key 1024
-doas openssl rsa -in /etc/mail/dkim/<domain>.key -pubout -out /etc/mail/dkim/<domain>.pub
+doas openssl genrsa -out /etc/mail/dkim/sergeypetrunin.com.key 1024
+doas openssl rsa -in /etc/mail/dkim/sergeypetrunin.com.key -pubout -out /etc/mail/dkim/sergeypetrunin.com.pub
 
-cat /etc/mail/dkim/<domain>.pub
+cat /etc/mail/dkim/sergeypetrunin.com.pub
 ```
 Copy this public key to TXT DNS record `yearMMdd._domainkey` like so:
 ```
@@ -20,7 +20,7 @@ Copy this public key to TXT DNS record `yearMMdd._domainkey` like so:
 ```
 doas cp /etc/examples/httpd.conf /etc
 ```
-and replace `example.com` with `mail-new.<domain>`
+and replace `example.com` with `mail-new.sergeypetrunin.com`
 ```
 doas rcctl -f start httpd
 ```
@@ -28,16 +28,16 @@ doas rcctl -f start httpd
 ```
 doas cp /etc/examples/acme-client.conf /etc
 ```
-and replace `example.com` with `mail-new.<domain>`
+and replace `example.com` with `mail-new.sergeypetrunin.com`
 
 Generate certificates:
 ```
-doas acme-client -v mail-new.<domain>
+doas acme-client -v mail-new.sergeypetrunin.com
 ```
 Results:
 ```
-/etc/ssl/mail-new.<domain>.fullchain.pem
-/etc/ssl/private/mail-new.<domain>.key
+/etc/ssl/mail-new.sergeypetrunin.com.fullchain.pem
+/etc/ssl/private/mail-new.sergeypetrunin.com.key
 ```
 ---> TODO: add acme-client into CRON to re-new automatically
 
@@ -46,9 +46,9 @@ Results:
 doas pkg_add redis rspamd opensmtpd-filter-rspamd
 ```
 For DKIM signing create `/etc/rspamd/local.d/dkim_signing.conf`
-IMPORTANT: Change group to `_rspamd` for `/etc/mail/dkim/<domain>.key`:
+IMPORTANT: Change group to `_rspamd` for `/etc/mail/dkim/sergeypetrunin.com.key`:
 ```
-doas chown :_rspamd /etc/mail/dkim/<domain>.key
+doas chown :_rspamd /etc/mail/dkim/sergeypetrunin.com.key
 ```
 
 Run on boot:
@@ -59,3 +59,5 @@ doas rcctl enable rspamd
 doas rcctl start redis
 doas rcctl start rspamd
 ```
+
+## Configure OpenSMTPd
