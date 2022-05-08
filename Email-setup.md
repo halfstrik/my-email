@@ -50,12 +50,14 @@ Results:
 /etc/ssl/private/mail-new.sergeypetrunin.com.key
 ```
 
-Make sure `smtpd` can access key file:
+Note: there is a bug in `smtpd -n` it can't read SSL key file, but no error in `smtpd -dv`
+
+### Configure crontab
 ```
-doas chmod g+rx /etc/ssl/private/
-doas chmod g+r /etc/ssl/private/mail-new.sergeypetrunin.com.key
+doas crontab -e
+...
+~       *       *       *       *       acme-client mail-new.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
 ```
----> TODO: add acme-client into CRON to re-new automatically
 
 ## Configure Rspamd
 ```
