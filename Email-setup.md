@@ -39,11 +39,17 @@ Results:
 /etc/ssl/mail-new.sergeypetrunin.com.fullchain.pem
 /etc/ssl/private/mail-new.sergeypetrunin.com.key
 ```
+
+Make sure `smtpd` can access key file:
+```
+doas chmod g+rx /etc/ssl/private/
+doas chmod g+r /etc/ssl/private/mail-new.sergeypetrunin.com.key
+```
 ---> TODO: add acme-client into CRON to re-new automatically
 
 ## Configure Rspamd
 ```
-doas pkg_add redis rspamd opensmtpd-filter-rspamd
+doas pkg_add redis rspamd opensmtpd-filter-rspamd opensmtpd-filter-senderscore
 ```
 For DKIM signing create `/etc/rspamd/local.d/dkim_signing.conf`
 IMPORTANT: Change group to `_rspamd` for `/etc/mail/dkim/sergeypetrunin.com.key`:
@@ -62,6 +68,11 @@ doas rcctl start rspamd
 
 ## Configure OpenSMTPd
 See `/etc/mail/smtpd.conf` and `/etc/mail/aliases`
+Check configuration:
+```
+smtpd -n
+configuration OK
+```
 
 ## Configuring Dovecot
 ```
