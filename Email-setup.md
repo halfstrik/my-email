@@ -2,6 +2,16 @@
 Links:
  * https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/
 
+## Set up mail users
+We are using real OS users for mail
+```
+doas useradd -m me
+doas passwd me
+
+doas useradd -m master
+doas passwd master
+```
+
 ## Set up DKIM
 ```
 doas mkdir /etc/mail/dkim
