@@ -12,3 +12,5 @@ Use [cd71.iso](https://cdn.openbsd.org/pub/OpenBSD/7.1/amd64/cd71.iso)
 Follow [encrypted-system-setup.md](./encrypted-system-setup.md) to install new system
 
 See [system-management.md](./system-management.md) for recurrent tasks
+
+Follow [email-setup.md](./email-setup.md) for OpenSMTPd, Rspamd and Dovecot setup

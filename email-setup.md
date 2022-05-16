@@ -2,17 +2,7 @@
 Links:
  * (middle of) https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/
 
-## Set up mail users
-We are using real OS users for mail
-```
-doas useradd -m me
-doas passwd me
-
-doas useradd -m master
-doas passwd master
-```
-
-## Set up DKIM
+## Set up DKIM (DNS continuation)
 ```
 doas mkdir /etc/mail/dkim
 doas openssl genrsa -out /etc/mail/dkim/sergeypetrunin.com.key 1024
@@ -22,7 +12,26 @@ cat /etc/mail/dkim/sergeypetrunin.com.pub
 ```
 Copy this public key to TXT DNS record `yearMMdd._domainkey` like so:
 ```
-"v=DKIM1;k=rsa;p=<key>;"
+"v=DKIM1;k=rsa;p=<key-no-spaces>;"
+```
+
+Test:
+```
+$ dig -t TXT yearMMdd._domainkey.sergeypetrunin.com +short
+"v=DKIM1;k=rsa;p=<key-no-spaces>;"
+```
+
+## Set up mail users
+We are using real OS users for mail
+```
+doas useradd -m me
+doas passwd me
+
+doas useradd -m master
+doas passwd master
+
+doas useradd -m spam
+doas passwd spam
 ```
 
 ## TSL certificate
@@ -30,33 +39,32 @@ Copy this public key to TXT DNS record `yearMMdd._domainkey` like so:
 ```
 doas cp /etc/examples/httpd.conf /etc
 ```
-and replace `example.com` with `mail-new.sergeypetrunin.com`
+and replace `example.com` with `mail-[1,2].sergeypetrunin.com`
 ```
 doas rcctl -f start httpd
 ```
+
 ### Configure acme-client
 ```
 doas cp /etc/examples/acme-client.conf /etc
 ```
-and replace `example.com` with `mail-new.sergeypetrunin.com`
+and replace `example.com` with `mail-1.sergeypetrunin.com`
 
 Generate certificates:
 ```
-doas acme-client -v mail-new.sergeypetrunin.com
+doas acme-client -v mail-1.sergeypetrunin.com
 ```
 Results:
 ```
-/etc/ssl/mail-new.sergeypetrunin.com.fullchain.pem
-/etc/ssl/private/mail-new.sergeypetrunin.com.key
+/etc/ssl/mail-1.sergeypetrunin.com.fullchain.pem
+/etc/ssl/private/mail-1.sergeypetrunin.com.key
 ```
-
-Note: there is a bug in `smtpd -n` it can't read SSL key file, but no error in `smtpd -dv`
 
 ### Configure crontab
 ```
 doas crontab -e
 ...
-~       *       *       *       *       acme-client mail-new.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
+~       *       *       *       *       acme-client mail-1.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
 ```
 
 ## Configure Rspamd
@@ -82,9 +90,10 @@ doas rcctl start rspamd
 See `/etc/mail/smtpd.conf` and `/etc/mail/aliases`
 Check configuration:
 ```
-smtpd -n
+doas smtpd -n
 configuration OK
 ```
+Note: may check that no error in `doas smtpd -dv`
 
 ## Configuring Dovecot
 ```
