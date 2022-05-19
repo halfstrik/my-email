@@ -4,8 +4,13 @@
 
 Make file `/usr/local/bin/syncmail.sh`
 
+For each user in: `me`, `spam`, `job`...
+
 On machine mail-x
 ```
+doas useradd -m me
+doas passwd me
+
 su - me
 ssh-keygen -t ed25519
 cat ~/.ssh/id_ed25519.pub

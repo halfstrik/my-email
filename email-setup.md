@@ -24,15 +24,11 @@ $ dig -t TXT yearMMdd._domainkey.sergeypetrunin.com +short
 ## Set up mail users
 We are using real OS users for mail
 ```
-doas useradd -m me
-doas passwd me
-
 doas useradd -m master
 doas passwd master
-
-doas useradd -m spam
-doas passwd spam
 ```
+
+Other mail users will be set up in [multi-node-setup.md](./multi-node-setup.md)
 
 ## TSL certificate
 ### Configure httpd
