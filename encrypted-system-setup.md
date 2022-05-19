@@ -42,7 +42,7 @@ After boot select:
 
 Keyboard layout: default
 
-Hostname: mail-ob-71-<#>.sergeypetrunin.com (also set up an A-record in DNS)
+Hostname: mail-<#>.sergeypetrunin.com (also set up an A-record in DNS)
 
 Networking - IPv4 and IPv6 autoconf.
 
