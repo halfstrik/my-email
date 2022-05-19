@@ -2,6 +2,8 @@
 
 ## Moving messages from one node to the next
 
+Make file `/usr/local/bin/syncmail.sh`
+
 On machine mail-x
 ```
 su - me
@@ -22,14 +24,19 @@ ssh mail-y.sergeypetrunin.com
 > yes
 exit
 ```
-to sync make file `~/syncmail.sh` - copy from `/home/<user>/`
+Set crontab for the user
 ```
 crontab -e
-*/15       *       *       *       *       sh /home/$USER/syncmail.sh
+*/15       *       *       *       *       sh /usr/local/bin/syncmail.sh
 ```
 
 Repeat for each user except `master`
 
 ## Detecting failures and notify `master`
 
-TODO
+Make file `/usr/local/bin/reportfail.sh`
+```
+su - master
+crontab -e
+*/5       *       *       *       *       sh /usr/local/bin/reportfail.sh
+```
