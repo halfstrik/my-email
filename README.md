@@ -15,8 +15,6 @@ See [system-management.md](./system-management.md) for recurrent tasks
 
 Follow [email-setup.md](./email-setup.md) for OpenSMTPd, Rspamd and Dovecot setup
 
-Follow [multi-node-setup.md](./multi-node-setup.md) for enable sync mails between nodes
-
 ## Set up some emails into a "folder"
 
 For now decided instead of folders within one email, do different OS users for specific subscriptions.

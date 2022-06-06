@@ -1,9 +1,7 @@
 # Setting up VPS
-
 Deiced to only use one unencrypted VPS - simple maintenance, no need to remember extra password
 
 ## Installation continue
-
 Keyboard layout: default
 
 Hostname: mail.sergeypetrunin.com (also set up an A-record in DNS)
@@ -66,7 +64,6 @@ Location of sets: http
 Sets: -game* and -x* (assuming OpenSMTPd won't need that)
 
 ## Post installation - Disable password auth SSHD
-
 Copy your key to `<user>/.ssh/authorized_keys`
 
 Disable password auth `/etc/ssh/sshd_config` by setting `PasswordAuthentication no`
@@ -80,7 +77,6 @@ cp /etc/examples/doas.conf /etc/
 ```
 
 ## Post installation - Disable `root` login
-
 ```
 usermod -p'*' root
 ```

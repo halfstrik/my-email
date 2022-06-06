@@ -28,8 +28,6 @@ doas useradd -m master
 doas passwd master
 ```
 
-Other mail users will be set up in [multi-node-setup.md](./multi-node-setup.md)
-
 ## TSL certificate
 ### Configure httpd
 ```
