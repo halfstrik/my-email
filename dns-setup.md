@@ -6,32 +6,30 @@ Links:
 
 TODO: Do we even need **-ob71-**
 
-mail-[1,2].sergeypetrunin.com  A     <IPv4>
-mail-[1,2].sergeypetrunin.com  AAAA  <IPv6>
+mail.sergeypetrunin.com  A     <IPv4>
+mail.sergeypetrunin.com  AAAA  <IPv6>
 
-sergeypetrunin.com.                 MX   0 mail-1.sergeypetrunin.com.
-                                    MX   1 mail-2.sergeypetrunin.com.
+sergeypetrunin.com.                 MX   0 mail.sergeypetrunin.com.
 
 Test:
 ```
-$ host mail-[1,2].sergeypetrunin.com
-mail-[1,2].sergeypetrunin.com has address <IPv4>
-mail-[1,2].sergeypetrunin.com has IPv6 address <IPv6>
+$ host mail.sergeypetrunin.com
+mail.sergeypetrunin.com has address <IPv4>
+mail.sergeypetrunin.com has IPv6 address <IPv6>
 
 $ dig -t MX sergeypetrunin.com +short
-0 mail-1.sergeypetrunin.com.
-1 mail-2.sergeypetrunin.com.
+0 mail.sergeypetrunin.com.
 ```
 
 ## Setting up rDNS and FCrDNS
 
-Go to the instance settings in Control Panel and set **Get PTR** to mail-[1,2].sergeypetrunin.com
+Go to the instance settings in Control Panel and set **Get PTR** to mail.sergeypetrunin.com
 To check:
 ```
 $ host <IPv4>
-some-ip.in-addr.arpa domain name pointer mail-[1,2].sergeypetrunin.com.
+some-ip.in-addr.arpa domain name pointer mail.sergeypetrunin.com.
 $ host <IPv6>
-some-ip.ip6.arpa domain name pointer mail-[1,2].sergeypetrunin.com.
+some-ip.ip6.arpa domain name pointer mail.sergeypetrunin.com.
 ```
 
 ## Lock who can send mails on our behalf
