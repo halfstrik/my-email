@@ -4,8 +4,6 @@ Links:
 
 ## Setting up A, AAAA and MX records
 
-TODO: Do we even need **-ob71-**
-
 mail.sergeypetrunin.com  A     <IPv4>
 mail.sergeypetrunin.com  AAAA  <IPv6>
 

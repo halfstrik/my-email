@@ -37,6 +37,7 @@ passwd master
 ### Configure httpd
 ```
 cp /etc/examples/httpd.conf /etc
+vi /etc/httpd.conf
 ```
 and replace `example.com` with `mail.sergeypetrunin.com`
 ```
@@ -46,6 +47,7 @@ rcctl -f start httpd
 ### Configure acme-client
 ```
 cp /etc/examples/acme-client.conf /etc
+vi /etc/acme-client.conf
 ```
 and replace `example.com` with `mail.sergeypetrunin.com`
 
@@ -55,8 +57,8 @@ acme-client -v mail.sergeypetrunin.com
 ```
 Results:
 ```
-/etc/ssl/mail.sergeypetrunin.com.fullchain.pem
-/etc/ssl/private/mail.sergeypetrunin.com.key
+ls /etc/ssl/mail.sergeypetrunin.com.fullchain.pem
+ls /etc/ssl/private/mail.sergeypetrunin.com.key
 ```
 
 ### Configure crontab
@@ -70,7 +72,7 @@ crontab -e
 ```
 pkg_add redis rspamd opensmtpd-filter-rspamd opensmtpd-filter-senderscore
 ```
-For DKIM signing create `/etc/rspamd/local.d/dkim_signing.conf`
+For DKIM signing create `vi /etc/rspamd/local.d/dkim_signing.conf`
 IMPORTANT: Change group to `_rspamd` for `/etc/mail/dkim/sergeypetrunin.com.key`:
 ```
 chown :_rspamd /etc/mail/dkim/sergeypetrunin.com.key
@@ -92,7 +94,6 @@ Check configuration:
 smtpd -n
 configuration OK
 ```
-Note: may check that no error in `doas smtpd -dv`
 
 ## Configuring Dovecot
 ```
