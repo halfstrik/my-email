@@ -39,7 +39,7 @@ passwd master
 cp /etc/examples/httpd.conf /etc
 vi /etc/httpd.conf
 ```
-and replace `example.com` with `mail.sergeypetrunin.com`
+and replace `example.com` with `mail74.sergeypetrunin.com`
 ```
 rcctl -f start httpd
 ```
@@ -49,23 +49,23 @@ rcctl -f start httpd
 cp /etc/examples/acme-client.conf /etc
 vi /etc/acme-client.conf
 ```
-and replace `example.com` with `mail.sergeypetrunin.com`
+and replace `example.com` with `mail74.sergeypetrunin.com`
 
 Generate certificates:
 ```
-acme-client -v mail.sergeypetrunin.com
+acme-client -v mail74.sergeypetrunin.com
 ```
 Results:
 ```
-ls /etc/ssl/mail.sergeypetrunin.com.fullchain.pem
-ls /etc/ssl/private/mail.sergeypetrunin.com.key
+ls /etc/ssl/mail74.sergeypetrunin.com.fullchain.pem
+ls /etc/ssl/private/mail74.sergeypetrunin.com.key
 ```
 
 ### Configure crontab
 ```
 crontab -e
 ...
-~       *       *       *       *       acme-client mail.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
+~       *       *       *       *       acme-client mail74.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
 ```
 
 ## Configure Rspamd

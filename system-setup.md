@@ -4,7 +4,7 @@ Deiced to only use one unencrypted VPS - simple maintenance, no need to remember
 ## Installation continue
 Keyboard layout: default
 
-Hostname: mail.sergeypetrunin.com (also set up an A-record in DNS)
+Hostname: mail74.sergeypetrunin.com (also set up an A-record in DNS)
 
 Networking - IPv4 and IPv6 autoconf.
 

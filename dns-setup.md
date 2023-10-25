@@ -4,14 +4,15 @@ Links:
 
 ## Setting up A, AAAA and MX records
 
-mail.sergeypetrunin.com  A     <IPv4>
-mail.sergeypetrunin.com  AAAA  <IPv6>
+mail74.sergeypetrunin.com  A     <IPv4>
+mail74.sergeypetrunin.com  AAAA  <IPv6>
 
 sergeypetrunin.com.                 MX   0 mail.sergeypetrunin.com.
+                                         10 mail74.sergeypetrunin.com.
 
 Test:
 ```
-$ host mail.sergeypetrunin.com
+$ host mail74.sergeypetrunin.com
 mail.sergeypetrunin.com has address <IPv4>
 mail.sergeypetrunin.com has IPv6 address <IPv6>
 
