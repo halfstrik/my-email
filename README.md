@@ -29,3 +29,10 @@ Links:
  * (end of) https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/
 
 TODO: Setup Sieve with Dovecot and Rspamd to handle spam
+
+## Testing message sending in command line
+
+```
+swaks --to halfstrik@gmail.com --from me@sergeypetrunin.com --auth-user me --auth-password \
+      --server mail74.sergeypetrunin.com --port 587 --tls
+```
