@@ -1,5 +1,5 @@
 # my-email
-Notes for setting up Email on OpenBSD 7.1
+Notes for setting up Email on OpenBSD 7.4
 
 ## Useful links and documentation
 
@@ -7,7 +7,7 @@ Notes for setting up Email on OpenBSD 7.1
 * https://github.com/poolpOrg/poolp.org/blob/master/content/posts/2019-09-14/index.md
 
 ## Installation
-Use [cd71.iso](https://cdn.openbsd.org/pub/OpenBSD/7.1/amd64/cd71.iso)
+Use [cd74.iso](https://cdn.openbsd.org/pub/OpenBSD/7.4/amd64/cd71.iso)
 
 Follow [system-setup.md](system-setup.md) to install new system
 
