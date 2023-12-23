@@ -41,6 +41,7 @@ vi /etc/httpd.conf
 ```
 and replace `example.com` with `mail74.sergeypetrunin.com`
 ```
+rcctl enable httpd
 rcctl -f start httpd
 ```
 
