@@ -10,6 +10,11 @@ mail74.sergeypetrunin.com  AAAA  <IPv6>
 sergeypetrunin.com.                 MX   0 mail.sergeypetrunin.com.
                                          10 mail74.sergeypetrunin.com.
 
+mail76.codereimagined.com  A     <IPv4>
+mail76.codereimagined.com  AAAA  <IPv6>
+
+codereimagined.com.                 MX   10 mail76.codereimagined.com.
+
 Test:
 ```
 $ host mail74.sergeypetrunin.com
@@ -17,6 +22,13 @@ mail.sergeypetrunin.com has address <IPv4>
 mail.sergeypetrunin.com has IPv6 address <IPv6>
 
 $ dig -t MX sergeypetrunin.com +short
+0 mail.sergeypetrunin.com.
+
+$ host mail76.codereimagined.com
+mail76.codereimagined.com has address <IPv4>
+mail76.codereimagined.com has IPv6 address <IPv6>
+
+$ dig -t MX codereimagined.com +short
 0 mail.sergeypetrunin.com.
 ```
 
@@ -39,6 +51,9 @@ Test:
 ```
 $ dig -t TXT sergeypetrunin.com +short
 "v=spf1 mx -all"
+
+$ dig -t TXT codereimagined.com +short
+"v=spf1 mx -all"
 ```
 
 ## Set what to do with failures DMARK
@@ -49,4 +64,7 @@ Test:
 ```
 $ dig -t TXT _dmarc.sergeypetrunin.com +short
 "v=DMARC1;p=quarantine;pct=100;rua=mailto:postmaster@sergeypetrunin.com;"
+
+$ dig -t TXT _dmarc.codereimagined.com +short
+"v=DMARC1;p=quarantine;pct=100;rua=mailto:postmaster@codereimagined.com;"
 ```

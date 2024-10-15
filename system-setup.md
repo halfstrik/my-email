@@ -4,7 +4,7 @@ Deiced to only use one unencrypted VPS - simple maintenance, no need to remember
 ## Installation continue
 Keyboard layout: default
 
-Hostname: mail74.sergeypetrunin.com (also set up an A-record in DNS)
+Hostname: mail76.codereimagined.com (also set up an A-record in DNS)
 
 Networking - IPv4 and IPv6 autoconf.
 
@@ -17,14 +17,14 @@ Setting normal user.
 Timezone: US/Eastern
 
 Root disk - sd0.
-Disk partitioning - total 15G
+Disk partitioning - total 15G->10G
 
-| Size  | Mount |
-|-------|-------|
-| 12.5G | /     |
-| 0.5G  | swap  |
-| 1.5G  | /var  |
-| rest  | /tmp  |
+| Size        | Mount |
+|-------------|-------|
+| 12.5G->7.5G | /     |
+| 0.5G        | swap  |
+| 1.5G        | /var  |
+| rest        | /tmp  |
 
 
 ```

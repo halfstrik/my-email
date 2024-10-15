@@ -14,6 +14,11 @@ openssl genrsa -out /etc/mail/dkim/sergeypetrunin.com.key 1024
 openssl rsa -in /etc/mail/dkim/sergeypetrunin.com.key -pubout -out /etc/mail/dkim/sergeypetrunin.com.pub
 
 cat /etc/mail/dkim/sergeypetrunin.com.pub
+
+openssl genrsa -out /etc/mail/dkim/codereimagined.com.key 1024
+openssl rsa -in /etc/mail/dkim/codereimagined.com.key -pubout -out /etc/mail/dkim/codereimagined.com.pub
+
+cat /etc/mail/dkim/codereimagined.com.pub
 ```
 Copy this public key to TXT DNS record `yearMMdd._domainkey` like so:
 ```
@@ -24,6 +29,8 @@ Test:
 ```
 $ dig -t TXT yearMMdd._domainkey.sergeypetrunin.com +short
 "v=DKIM1;k=rsa;p=<key-no-spaces>;"
+
+$ dig -t TXT yearMMdd._domainkey.codereimagined.com +short
 ```
 
 ## Set up mail users
@@ -55,11 +62,15 @@ and replace `example.com` with `mail74.sergeypetrunin.com`
 Generate certificates:
 ```
 acme-client -v mail74.sergeypetrunin.com
+acme-client -v mail76.codereimagined.com
 ```
 Results:
 ```
 ls /etc/ssl/mail74.sergeypetrunin.com.fullchain.pem
 ls /etc/ssl/private/mail74.sergeypetrunin.com.key
+
+ls /etc/ssl/mail76.codereimagined.com.fullchain.pem
+ls /etc/ssl/private/mail76.codereimagined.com.key
 ```
 
 ### Configure crontab
@@ -67,6 +78,8 @@ ls /etc/ssl/private/mail74.sergeypetrunin.com.key
 crontab -e
 ...
 ~       *       *       *       *       acme-client mail74.sergeypetrunin.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
+
+~       *       *       *       *       acme-client mail76.codereimagined.com && rcctl reload httpd && rcctl restart smtpd && rcctl reload dovecot
 ```
 
 ## Configure Rspamd
@@ -77,6 +90,7 @@ For DKIM signing create `vi /etc/rspamd/local.d/dkim_signing.conf`
 IMPORTANT: Change group to `_rspamd` for `/etc/mail/dkim/sergeypetrunin.com.key`:
 ```
 chown :_rspamd /etc/mail/dkim/sergeypetrunin.com.key
+chown :_rspamd /etc/mail/dkim/codereimagined.com.key
 ```
 
 Run on boot:
