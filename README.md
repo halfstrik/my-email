@@ -33,6 +33,7 @@ TODO: Setup Sieve with Dovecot and Rspamd to handle spam
 ## Testing message sending in command line
 
 ```
-swaks --to halfstrik@gmail.com --from me@sergeypetrunin.com --auth-user me --auth-password \
-      --server mail74.sergeypetrunin.com --port 587 --tls
+swaks --to halfstrik@gmail.com --from sergey.petrunin@codereimagined.com \
+      --auth-user sergey.petrunin --auth-password \
+      --server mail76.codereimagined.com --port 587 --tls
 ```
